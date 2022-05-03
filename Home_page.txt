@@ -1,0 +1,78 @@
+package obs;
+import java.sql.*;
+import java.util.Scanner;
+public class Admin extends JdbcC {
+	void createTable()
+	{
+		/*String sq1="create table table_name(sno int, name varchar(20))";
+		Statement st=con.createStatement();
+		st.executeUpdate(sq1);
+		System.out.println("table created");*/
+		}
+	void insert()
+	{
+		/*try {
+			String sq2="insert into books values(2017,'Ikigai','Cornerstone')";
+			Statement st=con.createStatement();
+			st.executeUpdate(sq2);
+			System.out.println("value Inserted");
+			}catch(Exception e)
+		{
+				System.out.println(e);
+				}*/
+		}
+	void update()
+	{
+		/*try {
+			String sq3="update books set publisher='Cornerstone' where published_year=2017";
+			Statement st=con.createStatement();
+			st.executeUpdate(sq3);
+			System.out.println("Record updated");
+			}catch(Exception e)
+		{
+				System.out.println(e);
+				}*/
+		} 
+	void view_pd()
+	{
+		try {
+			String sq="select * from purchase_details";
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery(sq);
+			while(rs.next())
+			{
+				System.out.println(rs.getString(1));
+				}
+			}catch(Exception e)
+		{
+				System.out.println(e);
+				}
+		}
+	void admin()
+	{
+		int choice,option=0;
+		Scanner s=new Scanner(System.in);
+		do {
+			System.out.println("1.Create\t2.Insert\t3.update\t4.View_purchaseDetails");
+			System.out.println("Enter your choice:");
+			choice=s.nextInt();
+			switch(choice)
+			{
+			case 1:
+				createTable();
+				break;
+				case 2:
+					insert();
+					break;
+					case 3:
+						update();
+						break;
+						case 4:
+							view_pd();
+							break;
+							default:
+								System.out.println("Invalid choice");
+								}
+			}while(option!=5);
+		}
+	}
