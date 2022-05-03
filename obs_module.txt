@@ -1,0 +1,61 @@
+package obs;
+import java.util.*;
+import java.sql.*;
+class Obs_Modules extends Admin{
+	Scanner s=new Scanner(System.in);
+	void books()
+	{
+		String details;
+		try {
+			String q="select * from books";
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery(q);
+			String year=rs.getString("published_year");
+			String name=rs.getString("book_name");
+			String publisher=rs.getString("publisher");
+			while(rs.next())
+			{
+				System.out.println(rs.getString(1)+"\t"+rs.getString(2)+"\t"+rs.getString(3));
+				}
+			}catch(Exception ec)
+		{
+				System.out.println(ec);
+				}
+		System.out.println("Please enter the details to purchase a book:");
+		System.out.println("1.Published_year 2.your_name 3.Address 4.MobileNo");
+		details=s.next();
+		try {
+			String sq2="insert into purchase_detailsvalues('"+ details +"')";
+			Statement st=con.createStatement();
+			st.executeUpdate(sq2);
+			System.out.println("value Inserted");
+			}catch(Exception e)
+		{
+				System.out.println(e);
+				}
+		}
+	void new_arrivals()
+	{
+		try{
+			String sq="select * from new_arrivals";
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery(sq);
+			while(rs.next())
+			{
+				System.out.println(rs.getInt(1)+""+rs.getString(2)+" "+rs.getString(3));
+				}
+			}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			}
+		}
+	void about()
+	{
+		System.out.println("*We are the mostpopular book store in your State.\n *we provide Variety of books in our store.\n * till date we sold 1000+ books to our happy customers\n *feel comfortable to shop with us\n * If you have any queries please reach us through help desk ");
+		}
+	void help()
+	{
+		System.out.println("Contact us on:\nM:7022793083\n E:onlinebookstore.com");
+		}
+	}
